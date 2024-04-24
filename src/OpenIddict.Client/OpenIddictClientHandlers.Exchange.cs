@@ -78,8 +78,10 @@ public static partial class OpenIddictClientHandlers
                         => ((JsonElement) value).ValueKind is JsonValueKind.String,
 
                     // The following parameters MUST be formatted as numeric dates:
-                    Parameters.ExpiresIn => (JsonElement) value is { ValueKind: JsonValueKind.Number } element &&
-                        element.TryGetDecimal(out decimal result) && result is >= 0,
+                    Parameters.ExpiresIn =>
+                        ((JsonElement) value is { ValueKind: JsonValueKind.Number } element &&
+                            element.TryGetDecimal(out decimal result) && result is >= 0) ||
+                        (JsonElement) value is { ValueKind: JsonValueKind.Null },
 
                     // Parameters that are not in the well-known list can be of any type.
                     _ => true

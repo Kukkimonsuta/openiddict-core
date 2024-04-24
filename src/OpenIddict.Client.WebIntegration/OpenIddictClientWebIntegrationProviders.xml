@@ -1,4 +1,4 @@
-﻿<Providers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<Providers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="OpenIddictClientWebIntegrationProviders.xsd">
   <!--
     Note: for more information on how to add a new web provider integration, visit
@@ -1101,6 +1101,21 @@
             Documentation="https://developer.orange.com/apis/authentication-fr/getting-started">
     <Environment Issuer="https://openid.orange.fr/"
                  ConfigurationEndpoint="https://api.orange.com/openidconnect/fr/v1/.well-known/openid-configuration" />
+  </Provider>
+
+  <Provider Name="PathOfExile" Id="b33fd3c1-ddd8-4018-af47-f4e3aa467d88"
+            Documentation="https://www.pathofexile.com/developer/docs/authorization">
+    <Environment Issuer="https://www.pathofexile.com/">
+      <Configuration AuthorizationEndpoint="https://www.pathofexile.com/oauth/authorize"
+                     TokenEndpoint="https://www.pathofexile.com/oauth/token"
+                     RevocationEndpoint="https://www.pathofexile.com/oauth/token/revoke"
+                     IntrospectionEndpoint="https://www.pathofexile.com/oauth/token/introspect">
+        <CodeChallengeMethod Value="S256"/>
+        <GrantType Value="authorization_code"/>
+        <GrantType Value="client_credentials"/>
+        <GrantType Value="refresh_token"/>
+      </Configuration>
+    </Environment>
   </Provider>
 
   <!--
